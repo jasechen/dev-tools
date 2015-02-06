@@ -8,7 +8,7 @@
 ##
 # This content is released under the MIT License (MIT)
 #
-# Copyright (c) 2014 - 2015, British Columbia Institute of Technology
+# Copyright (c) 2015, Jase Chen (jase.chen@gmail.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -29,10 +29,10 @@
 # THE SOFTWARE.
 #
 ##
-# @Author 	Jase Chen (jase.chen@gmail.com)
-# @Copyright 	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
-# @License 	http://opensource.org/licenses/MIT	MIT License
-# @Version 	0.0.1
+# @Author 		Jase Chen (jase.chen@gmail.com)
+# @Copyright 	Copyright (c) 2015, Jase Chen (jase.chen@gmail.com)
+# @License 		MIT License (http://opensource.org/licenses/MIT)
+# @Version 		0.0.1
 #
 ##
 # Requirements
