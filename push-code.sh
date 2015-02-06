@@ -47,12 +47,15 @@
 
 
 # php-cs-fixer
-for filename in "$@"
-do
-	if [ -f "$filename" ]; then
-		php-cs-fixer fix -q --level=psr2 $filename
-	fi
-done
+read -p "PHP files [y/n]: " is_php
+if [ $is_php=="Y" -o $is_php=="y" ]; then	
+	for filename in "$@"
+	do
+		if [ -f "$filename" ]; then
+			php-cs-fixer fix -q --level=psr2 $filename
+		fi
+	done
+fi
 
 
 # git add

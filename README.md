@@ -1,9 +1,12 @@
-# DEV-TOOLS
+## DEV-TOOLS
 
 這些 scripts 是幫忙開發的工具.
 
 
-## TOOLS
+### License
+
+the MIT License.
+
 
 ### push-code.sh
 
@@ -11,15 +14,13 @@
 	2. 若是 php 檔，會先 php-cs-fixer 過
 
  
-**Requirements**
+###### Requirements 
 
     1. php-cs-fixer: https://github.com/FriendsOfPHP/PHP-CS-Fixer
     2. git: http://git-scm.com
 
-**Usage**
+###### Usage
 
 	# push-code.sh /path/to/file1 /path/to/file2 ...
 
 
-## License
-the MIT License.
