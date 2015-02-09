@@ -1,5 +1,5 @@
 ## DEV-TOOLS
-這些 scripts 是幫忙開發的工具.
+這些 scripts 是 server 上會用到的工具.
 
 
 ### License
