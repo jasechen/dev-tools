@@ -48,7 +48,7 @@
 
 # php-cs-fixer
 read -p "PHP files [y/n]: " is_php
-if [ $is_php=="Y" -o $is_php=="y" ]; then	
+if [ $is_php=="Y" -o $is_php=="y" ]; then
 	for filename in "$@"
 	do
 		if [ -f "$filename" ]; then
@@ -67,7 +67,7 @@ read -p "comment (no message): " comment
 if [ -z $comment ]; then
 	comment="no message"
 fi
-git commit -q -m '$comment'
+git commit -q -m "$comment"
 
 
 # git push
