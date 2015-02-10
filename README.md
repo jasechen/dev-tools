@@ -1,9 +1,9 @@
 ## DEV-TOOLS
-這些 scripts 是 server 上會用到的工具.
-
+	1. 這些 scripts 是 server 上會用到的工具.
+	2. develop on Ubuntu.
 
 ### License
-the MIT License.
+the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
 
 
 ### push-code.sh
@@ -24,3 +24,14 @@ the MIT License.
 	1. mysql: http://www.mysql.com
 ###### Usage
 	# bak-databases.sh
+
+
+### watch-hd-space.sh
+	1. 偵測機器的空間有無超過監控值，若有超過則寄信通知
+	2. 本程式利用 mail 通知管理者
+	3. 可搭配 cron job 使用
+###### Requirements
+	1. mailutils: http://mailutils.org
+	2. other common tools
+###### Usage
+	# watch-hd-space.sh

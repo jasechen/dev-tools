@@ -3,7 +3,7 @@
 ##
 # watch-hd-space.sh
 #
-# 
+#
 #
 ##
 # This content is released under the MIT License (MIT)
@@ -36,28 +36,25 @@
 #
 ##
 # Requirements
-# 
-#
+# 	1. mailutils: http://mailutils.org
+#	2. other common tools in linux
 ##
 # Usage
-#
-#
+# 	crontab
+#	* * * * * watch-hd-space.sh
 ##
 
-space=`df -h --sync / | awk 'NR==2{print $5}'`
-space=${space:0:2}
+hostname=`hostname`
+ip=`ifconfig eth0 | grep 'inet addr' | sed 's/^.*addr://g' | sed 's/  Bcast.*$//g'`
+space=`df -h --sync / | awk 'NR==2{print $5}' | sed 's/%//g'`
 
-echo $space
+# setting
+deadpoint="90"
+to="RECEIVE.USER.E-MAIL"
 
-if [ $space -ge 90 ] ; then
-  echo "99"
+subject="$hostname ($ip) HD space ALERT !!"
+content="The used space over $deadpoint."
+
+if [ $space -ge $deadpoint ] ; then
+	echo "$content" | mail -s "$subject" $to
 fi
-
-
-#sendmail -S smtp.gmail.com:25 
-#-f Jase Chen 
-#-au jase.chen@gmail.com 
-#-ap imWJ123 
-#-t test user2000@gmail.com
-
-echo "This is a test mail." | mail -s "test mail" jase.chen@gmail.com
