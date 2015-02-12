@@ -56,3 +56,11 @@ the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
 	1. some linux common tools
 ###### Usage
 	# watch-mem-loading.sh
+
+
+### ask-alexa.sh
+	1. 詢問 alexa 某網站排名
+###### Requirements
+	1. curl
+###### Usage
+	# ask-alexa.sh www.example1.com www.example2.com ..
