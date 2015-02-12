@@ -35,3 +35,14 @@ the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
 	2. other common tools
 ###### Usage
 	# watch-hd-space.sh
+
+
+### watch-cpu-loading.sh
+	1. 偵測機器的 CPU loading 有無超過監控值，若有超過則寄信通知
+	2. 本程式利用 mail 通知管理者
+	3. 可搭配 cron job 使用
+###### Requirements
+	1. sysstat: https://github.com/sysstat/sysstat
+	2. other common tools
+###### Usage
+	# watch-cpu-loading.sh

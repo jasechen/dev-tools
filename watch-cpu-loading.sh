@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##
-# watch-hd-space.sh
+# watch-cpu-loading.sh
 #
 #
 #
@@ -36,25 +36,25 @@
 #
 ##
 # Requirements
-# 	1. mailutils: http://mailutils.org
+# 	1. sysstat: https://github.com/sysstat/sysstat
 #	2. other common tools in linux
 ##
 # Usage
 # 	crontab
-#	* * * * * watch-hd-space.sh
+#	* * * * * watch-cpu-loading.sh
 ##
 
 hostname=`hostname`
 ip=`ifconfig eth0 | grep 'inet addr' | sed 's/^.*addr://g' | sed 's/  Bcast.*$//g'`
-space=`df -h --sync / | awk 'NR==2{print $5}' | sed 's/%//g'`
+loading=`mpstat | grep -A 5 "%idle" | tail -n 1 | awk -F " " '{print 100 - $12}'a`
 
 # setting
-deadpoint="90"
+deadpoint="60"
 to="RECEIVE.USER.E-MAIL"
 
-subject="$hostname ($ip) HD space ALERT !!"
-content="The used space over $deadpoint."
+subject="$hostname ($ip) CPU loading ALERT !!"
+content="The used CPU loading over $deadpoint."
 
-if [ `echo "$space >= $deadpoint" | bc` -eq 1 ] ; then
+if [ `echo "$loading >= $deadpoint" | bc` -eq 1 ] ; then
 	echo "$content" | mail -s "$subject" $to
 fi
