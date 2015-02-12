@@ -59,7 +59,7 @@ the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
 
 
 ### ask-alexa.sh
-	1. 詢問 alexa 某網站排名
+	1. 詢問 alexa 某網站在台灣的排名
 ###### Requirements
 	1. curl
 ###### Usage
