@@ -64,7 +64,7 @@ git add "$@"
 
 # git commit
 read -p "comment (no message): " comment
-if [ -z $comment ]; then
+if [ -z "$comment" ]; then
 	comment="no message"
 fi
 git commit -q -m "$comment"
