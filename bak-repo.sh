@@ -46,12 +46,14 @@
 #
 ##
 
-bak_git_service="bitbucket"     # github / bitbucket
+bak_git_service="bitbucket"     # github / bitbucket / gitlab
 bak_repo_username=""
 bak_repo_password=""
+bak_repo_gitlab_token="" # https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
 
 bak_repo_github_url="git@github.com:$bak_repo_username/"
 bak_repo_bitbucket_url="git@bitbucket.org:$bak_repo_username/"
+bak_repo_gitlab_url="git@gitlab.com:$bak_repo_username/"
 
 bak_repo_github_api="https://api.github.com/user/repos"
 bak_repo_github_api_params_prefix='-d {"name":"'
@@ -60,18 +62,28 @@ bak_repo_github_api_params_suffix='"}'
 bak_repo_bitbucket_api="https://api.bitbucket.org/1.0/repositories/"
 bak_repo_bitbucket_api_params="--data name="
 
+bak_repo_gitlab_api="https://gitlab.com/api/v3/projects"
+bak_repo_gitlab_api_params_prefix="?name="
+
+
 if [ "$bak_git_service" = "bitbucket" ]; then
     bak_repo_api=$bak_repo_bitbucket_api
     bak_repo_api_params_prefix=$bak_repo_bitbucket_api_params
     bak_repo_api_params_suffix=''
 
     bak_repo_url=$bak_repo_bitbucket_url
-else
+elif [ "$bak_git_service" = "github" ]; then
     bak_repo_api=$bak_repo_github_api
     bak_repo_api_params_prefix=$bak_repo_github_api_params_prefix
     bak_repo_api_params_suffix=$bak_repo_github_api_params_suffix
 
     bak_repo_url=$bak_repo_github_url
+else
+    bak_repo_api=$bak_repo_gitlab_api
+    bak_repo_api_params_prefix=$bak_repo_gitlab_api_params_prefix
+    bak_repo_api_params_suffix=''
+
+    bak_repo_url=$bak_repo_gitlab_url
 fi
 
 current_path=`pwd`
@@ -88,6 +100,7 @@ cmd_git_clone="$cmd_git clone"
 cmd_git_branch="$cmd_git branch"
 cmd_git_remote="$cmd_git remote"
 cmd_curl_user="$cmd_curl -u $bak_repo_username:$bak_repo_password"
+cmd_curl_token="$cmd_curl --header 'PRIVATE-TOKEN: $bak_repo_gitlab_token' -X POST"
 
 
 read -p "Backup Repo NAME : " bak_repo_name
@@ -119,7 +132,11 @@ fi
 
 $cmd_cd $local_path
 
-$cmd_curl_user $bak_repo_api $bak_repo_api_params_prefix$bak_repo_name$bak_repo_api_params_suffix
+if [ "$bak_git_service" = "gitlab" ]; then
+    $cmd_curl_token "'"$bak_repo_api$bak_repo_api_params_prefix$bak_repo_name$bak_repo_api_params_suffix"'"
+else
+    $cmd_curl_user $bak_repo_api $bak_repo_api_params_prefix$bak_repo_name$bak_repo_api_params_suffix
+fi
 
 $cmd_git_remote set-url --add --push origin $repo_url
 $cmd_git_remote set-url --add --push origin $bak_repo_url$bak_repo_name.git
