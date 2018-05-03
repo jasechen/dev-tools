@@ -75,10 +75,13 @@ else
 fi
 
 current_path=`pwd`
+
 cmd_cd="cd"
+cmd_rm="rm"
 cmd_git="git"
 cmd_curl="curl"
 cmd_grep="grep"
+
 cmd_git_pull="$cmd_git pull"
 cmd_git_push="$cmd_git push"
 cmd_git_clone="$cmd_git clone"
@@ -87,12 +90,13 @@ cmd_git_remote="$cmd_git remote"
 cmd_curl_user="$cmd_curl -u $bak_repo_username:$bak_repo_password"
 
 
-# set local path
-read -p "Local Path [$current_path]: " local_path
-if [ ! -n "$local_path" ]; then
-    local_path=$current_path
+read -p "Backup Repo NAME : " bak_repo_name
+if [ ! -n "bak_repo_name" ]; then
+    echo "Backup Repo NAME required !!"
+    exit
 fi
 
+local_path=$current_path/$bak_repo_name
 
 # if local path NOT exist
 if [ ! -d "$local_path" ]; then
@@ -101,13 +105,6 @@ if [ ! -d "$local_path" ]; then
     read -p "Repo URL : " repo_url
     if [ ! -n "repo_url" ]; then
         echo "Repo URL required !!"
-        exit
-    fi
-
-    # set backup repo url
-    read -p "Backup Repo NAME : " bak_repo_name
-    if [ ! -n "bak_repo_name" ]; then
-        echo "Backup Repo NAME required !!"
         exit
     fi
 
@@ -139,3 +136,6 @@ $cmd_git_pull --all
 # git push all branches
 $cmd_git_push --all
 
+$cmd_cd ..
+
+$cmd_rm -rf $local_path
