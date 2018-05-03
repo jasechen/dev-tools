@@ -54,8 +54,8 @@ bak_repo_github_url="git@github.com:$bak_repo_username/"
 bak_repo_bitbucket_url="git@bitbucket.org:$bak_repo_username/"
 
 bak_repo_github_api="https://api.github.com/user/repos"
-bak_repo_github_api_params_prefix="-d '{\"name\":\""
-bak_repo_github_api_params_suffix="\"}'"
+bak_repo_github_api_params_prefix='-d {"name":"'
+bak_repo_github_api_params_suffix='"}'
 
 bak_repo_bitbucket_api="https://api.bitbucket.org/1.0/repositories/"
 bak_repo_bitbucket_api_params="--data name="
